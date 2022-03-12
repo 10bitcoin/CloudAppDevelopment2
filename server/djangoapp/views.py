@@ -43,10 +43,10 @@ def login_request(request):
         if user is not None:
             # If user is valid, call login method to login current user
             login(request, user)
-            return redirect('djangoapp/index.html')
+            return redirect('djangoapp:index')
         else:
             # If not, return to login page again
-            return render(request, '/login.html', context)
+            return render(request, 'djangoapp/login.html', context)
     else:
         return render(request, 'djangoapp/login.html', context)
 
@@ -60,7 +60,7 @@ def logout_request(request):
     print("Log out the user `{}`".format(request.user.username))
     # Logout user in the request
     logout(request)
-    return redirect('djangoapp/index.html')
+    return redirect('djangoapp:index')
 
 # Create a `registration_request` view to handle sign up request
 def registration_request(request):
@@ -81,4 +81,3 @@ def get_dealerships(request):
 # Create a `add_review` view to submit a review
 # def add_review(request, dealer_id):
 # ...
-

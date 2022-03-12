@@ -54,19 +54,28 @@
                         <li class="nav-item">
                             <a class="nav-link text-white" href="./contact">Contact</a>
                         </li>
-                        {% if request.user.is_authenticated %}
-                            <li class="nav-item"><p class="nav-link text-white">{{ request.user.username }}</p></li>
-                            <li class="nav-item">
-                                <a class="nav-link btn btn-secondary text-white" type="button" href="./logout">Logout</a>
-                            </li>
+                        {% if user.is_authenticated %}
+                        <div class="rightalign">
+                            <div class="dropdown">
+                                <button class="dropbtn">{{user.first_name}}</button>
+                                <div class="dropdown-content">
+                                    <a href="{% url 'djangoapp:logout' %}">Logout</a>
+                                </div>
+                            </div>
+                        </div>
                         {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-secondary text-white" type="button" href="./login">Sign In</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-dark text-white" type="button" href="./registration">Register</a>
-                        </li>
-                        {% endif %}
+                        <div class="rightalign">
+                            <div class="dropdown">
+                                <form action="{% url 'djangoapp:registration' %}" method="get">
+                                    <input class="dropbtn"  type="submit" value="Visitor">
+                                    <div class="dropdown-content">
+                                        <a href="{% url 'djangoapp:registration' %}">Signup</a>
+                                        <a href="{% url 'djangoapp:login' %}">Login</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    {% endif %}
                     </ul>
                 </div>
     <!--Add a dealer table here -->
