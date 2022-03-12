@@ -55,30 +55,22 @@
                             <a class="nav-link text-white" href="./contact">Contact</a>
                         </li>
                         {% if user.is_authenticated %}
-                        <div class="rightalign">
-                            <div class="dropdown">
+
+                        <li class="nav-item">
                                 <button class="dropbtn">{{user.first_name}}</button>
-                                <div class="dropdown-content">
-                                    <a href="{% url 'djangoapp:logout' %}">Logout</a>
-                                </div>
-                            </div>
-                        </div>
+                            <a class="nav-link text-white" href="{% url 'djangoapp:logout' %}">Logout</a>
+                        </li>
                         {% else %}
-                        <div class="rightalign">
-                            <div class="dropdown">
-                                <form action="{% url 'djangoapp:registration' %}" method="get">
-                                    <input class="dropbtn"  type="submit" value="Visitor">
-                                    <div class="dropdown-content">
-                                        <a href="{% url 'djangoapp:registration' %}">Signup</a>
-                                        <a href="{% url 'djangoapp:login' %}">Login</a>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'djangoapp:registration' %}">Signup</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="{% url 'djangoapp:login' %}">Login</a>
+                        </li>
                     {% endif %}
                     </ul>
                 </div>
     <!--Add a dealer table here -->
     </body>
 </html>
-
