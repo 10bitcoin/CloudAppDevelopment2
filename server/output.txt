@@ -1,0 +1,8 @@
+Invoking 'cf routes --orglevel'...
+
+Getting routes for org ingridbrandonwilderness@gmail.com as ingridbrandonwilderness@gmail.com ...
+
+space                host                                                   domain                     port   path   type   apps                           service
+dev                  bd8                                                    eu-gb.cf.appdomain.cloud                        bd8
+dev                  movies-reviews-database-bd8                            eu-gb.mybluemix.net                             movies-reviews-database-bd8
+sentiment-analyzer   dylan-001-sentiment-analyzer-accountable-pangolin-ly   eu-gb.mybluemix.net                             dylan-001-sentiment-analyzer

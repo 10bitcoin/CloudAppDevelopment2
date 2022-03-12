@@ -1,11 +1,11 @@
   applications:
-  - name: djangoapp
+  - name: cardealer-djangoapp
     routes:
-      - route: $HOST.$DOMAIN
+      - route: abc.eu-gb.mygreenmix.net
     memory: 128M
     buildpack: python_buildpack
-  - name: djangoapp-nginx
+  - name: cardealer-djangoapp-nginx
     routes:
-      - route: $HOST.$DOMAIN/static
+      - route: abc.eu-gb.mygreenmix.net/static
     memory: 128M
     buildpack: staticfile_buildpack
