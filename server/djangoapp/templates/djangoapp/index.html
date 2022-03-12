@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Dealership Review</title>
+    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -14,23 +16,99 @@
 </head>
 
     <body>
-        <nav class="navbar navbar-inverse">
-            <div class="container-fluid">
-              <div class="navbar-header">
-                <a class="navbar-brand" href="#">WebSiteName</a>
-              </div>
-              <ul class="nav navbar-nav">
-                <li class="active"><a href=".">Home</a></li>
-                <li><a href="./about">About</a></li>
-                <li><a href="./contact">Contact</a></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li><a href="./sign-up"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                <li><a href="./login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-              </ul>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-danger">
+                <a class="navbar-brand text-white" href="#">CAR DEALER</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+        
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto topnav">
+                        <li class="nav-item active">
+                            <a class="nav-link text-white" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Shop Pre-Owned</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Shop New Cars</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Clearence Event</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Resources
+                            </a>
+                            <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item text-white" href="#">Carfax</a>
+                                <a class="dropdown-item text-white" href="#">Carproof</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-white" href="#">Omnivic</a>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="./about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="./contact">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-secondary text-white" type="button" href="#" data-toggle="modal" data-target="#myModal">Sign In</a>                  
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-dark text-white" type="button" href="#" data-toggle="modal" data-target="#myModal">Register</a>
+                        </li>
+                    </ul>
+                </div>
+        
+                    <!-- The Modal -->
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+        
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">Customer Sign In</h4>
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                        </div>
+        
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <form>
+                                <label class="sr-only" for="usrname">Username</label>
+                                <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                                </div>
+        
+        
+                                <label class="sr-only" for="Password">Name</label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="basic-addon2"><i class="fa fa-key"></i></span>
+                                    </div>
+                                    <input id="Password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon2">
+                                </div>
+                            </form>
+                        </div>
+        
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" >Sign In</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+        
+                    </div>
+                </div>
             </div>
-          </nav>
-          <img src="images/settingspy.png" width="75%"/>
+                    
+        
+            </nav>
+        </div>
     <!--Add a dealer table here -->
 
     </body>
