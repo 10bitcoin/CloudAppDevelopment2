@@ -1,11 +1,11 @@
   applications:
   - name: cardealer-djangoapp
     routes:
-      - route: abc.eu-gb.mygreenmix.net
+      - route: dylan.eu-gb.mybluemix.net
     memory: 128M
     buildpack: python_buildpack
   - name: cardealer-djangoapp-nginx
     routes:
-      - route: abc.eu-gb.mygreenmix.net/static
+      - route: dylan.eu-gb.mybluemix.net/static
     memory: 128M
     buildpack: staticfile_buildpack
