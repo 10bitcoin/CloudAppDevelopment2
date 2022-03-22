@@ -36,14 +36,13 @@ def get_request(url, **kwargs):
 # def get_dealers_from_cf(url, **kwargs):
 # - Call get_request() with specified arguments
 # - Parse JSON results into a CarDealer object list
+
 def get_dealers_from_cf(url, **kwargs):
     results = []
     # Call get_request with a URL parameter
     json_result = get_request(url)
     if json_result:
-        # Get the row list in JSON as dealers
         dealers = json_result["rows"]
-        # For each dealer object
         for dealer in dealers:
             # Get its content in `doc` object
             dealer_doc = dealer["doc"]
