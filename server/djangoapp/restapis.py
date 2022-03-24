@@ -1,6 +1,6 @@
 import requests
 import json
-from .models import CarDealer #DealerReview
+from .models import CarDealer, DealerReview
 from requests.auth import HTTPBasicAuth
 
 
@@ -66,6 +66,8 @@ def get_dealers_from_cf(url, **kwargs):
             results.append(dealer_obj)
 
     return results
+
+#def get_dealer_reviews_from_cf(url, **kwargs):
 
 
 # Create a get_dealer_reviews_from_cf method to get reviews by dealer id from a cloud function
