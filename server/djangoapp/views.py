@@ -83,35 +83,44 @@ def registration_request(request):
             user_exist = True
         except:
             # If not, simply log this is a new user
-            logger.debug("{} is new user".format(username))
+            logger.error("{} is new user".format(username))
         # If it is a new user
         if not user_exist:
             # Create user in auth_user table
             user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
                                             password=password)
             # Login the user and redirect to course list page
+            user.is_superuser = True
+            user.is_staff=True
+            user.save()
             login(request, user)
             return redirect("djangoapp:index")
         else:
-            return render(request, 'djangoapp/index.html', context)
+            messages.warning(request, "The user already exists.")
+            return redirect('djangoapp:registration')
 
 # Update the `get_dealerships` view to render the
 #  index page with a list of dealerships
 def get_dealerships(request):
     if request.method == "GET":
+        context = {}
         url = "https://ba7b2ad7-040b-4eb0-a003-9d80c3c1ffd2-bluemix.cloudantnosqldb.appdomain.cloud"
         dealerships = get_dealers_from_cf(url)
-        dealer_names = ' '.join([dealer.short_name for dealer in dealerships])
+        context['dealership_list'] = dealerships
         # Return a list of dealer short name
-        return HttpResponse(dealer_names)
+        return render(request, 'djangoapp/index.html', context)
 
 
 # Create a `get_dealer_details` view to render the reviews of a dealer
-#def get_dealer_details(request, dealer_id):
-#    if request.method == "GET":
-#                url='https://ba7b2ad7-040b-4eb0-a003-9d80c3c1ffd2-bluemix.cloudantnosqldb.appdomain.cloud'
-#                dealerships = get_dealers_from_cf(url)
-                
+def get_dealer_details(request, dealer_id):
+    if request.method == "GET":
+        context= {}
+        url='https://ba7b2ad7-040b-4eb0-a003-9d80c3c1ffd2-bluemix.cloudantnosqldb.appdomain.cloud'
+        dealerships = get_dealers_from_cf(url)
+        for dealer in dealerships:
+            if dealer.id == dealer_id:
+                context['dealership'] = dealer
+                return render(request, 'djangoapp/index.html', context)           
 
 #                return HttpResponse(dealerships)
 
