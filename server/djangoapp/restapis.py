@@ -53,6 +53,7 @@ def get_dealers_from_cf(url, **kwargs):
     # Call get_request with a URL parameter
     json_result = get_request(url)
     if json_result:
+        print(json_result)
         # Get the row list in JSON as dealers
         dealers = json_result["entries"]
         # For each dealer object
