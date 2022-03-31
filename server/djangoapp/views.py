@@ -112,14 +112,19 @@ def get_dealerships(request):
 
 
 # Create a `get_dealer_details` view to render the reviews of a dealer
-def get_dealer_details(request, dealer_id):
+def get_dealer_details(request, id):
     if request.method == "GET":
-        context= {}
-        url='https://ba7b2ad7-040b-4eb0-a003-9d80c3c1ffd2-bluemix.cloudantnosqldb.appdomain.cloud'
-        dealerships = get_dealer_reviews_from_cf(url, dealer_id)
-        context['dealership_review'] = dealerships
-        # Return a list of dealer short name
-        return render(request, 'djangoapp/index.html', context)
+        context = {}
+        dealer_url = "https://eu-gb.functions.cloud.ibm.com/api/v1/namespaces/ingridbrandonwilderness%40gmail.com_dev/actions/cardealership-djangoapp/get_dealership"
+        dealer = get_dealer_by_id_from_cf(dealer_url, id=id)
+        context["dealer"] = dealer
+    
+        review_url = "https://eu-gb.functions.cloud.ibm.com/api/v1/namespaces/ingridbrandonwilderness%40gmail.com_dev/actions/cardealership-djangoapp/get_reviews"
+        reviews = get_dealer_reviews_from_cf(review_url, id=id)
+        print(reviews)
+        context["reviews"] = reviews
+        
+        return render(request, 'djangoapp/dealer_details.html', context)
         
         ### Not sure if the below is an alternative ###
         #dealerships = get_dealers_from_cf(url)
