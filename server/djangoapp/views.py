@@ -104,7 +104,7 @@ def registration_request(request):
 def get_dealerships(request):
     if request.method == "GET":
         context = {}
-        url = "https://ba7b2ad7-040b-4eb0-a003-9d80c3c1ffd2-bluemix.cloudantnosqldb.appdomain.cloud"
+        url = "https://476b451e.eu-gb.apigw.appdomain.cloud/api/dealerships"
         dealerships = get_dealers_from_cf(url)
         context['dealership_list'] = dealerships
         # Return a list of dealer short name
@@ -115,11 +115,11 @@ def get_dealerships(request):
 def get_dealer_details(request, id):
     if request.method == "GET":
         context = {}
-        dealer_url = "https://eu-gb.functions.cloud.ibm.com/api/v1/namespaces/ingridbrandonwilderness%40gmail.com_dev/actions/cardealership-djangoapp/get_dealership"
+        dealer_url = "https://476b451e.eu-gb.apigw.appdomain.cloud/api/dealership"
         dealer = get_dealer_by_id_from_cf(dealer_url, id=id)
         context["dealer"] = dealer
     
-        review_url = "https://eu-gb.functions.cloud.ibm.com/api/v1/namespaces/ingridbrandonwilderness%40gmail.com_dev/actions/cardealership-djangoapp/get_reviews"
+        review_url = "https://476b451e.eu-gb.apigw.appdomain.cloud/api/reviews"
         reviews = get_dealer_reviews_from_cf(review_url, id=id)
         print(reviews)
         context["reviews"] = reviews
