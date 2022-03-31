@@ -136,6 +136,10 @@ def get_dealer_details(request, id):
 #                return HttpResponse(dealerships)
 
 # Create a `add_review` view to submit a review
+
+###
+# Not finished here just yet
+###
 def add_review(request, dealer_id):
 if request.method == "POST":
         context = {}
