@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.timezone import now
-
+from django.core import serializers 
+import uuid
+import json
 
 # Create your models here.
         
@@ -28,13 +30,24 @@ class CarMake(models.Model):
 # - __str__ method to print a car make object
 class CarModel(models.Model):
 
-    SEDAN = 'sedan'
-    SUV = 'suv'
-    WAGON = 'wagon'
+    SEDAN = 'Sedan'
+    SUV = 'Suv'
+    WAGON = 'Wagon'
+    COUPE = 'Coupe'
+    SPORTS = 'Sports'
+    HATCHBACK = 'Hatchback'
+    CONVERTIBLE = 'Convertible'
+    MINIVAN = 'Minivan'
     Type_Choice = [
         (SEDAN, 'Sedan'), 
         (SUV, 'Suv'), 
-        (WAGON, 'Wagon')]
+        (WAGON, 'Wagon'),
+        (COUPE, 'Coupe'),
+        (SPORTS, 'Sports'),
+        (HATCHBACK, 'Hatchback'),
+        (CONVERTIBLE, 'Convertible'),
+        (MINIVAN, 'Minivan'),
+    ]
 
     model = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     title = models.CharField(null=True, max_length=30, default='title')
@@ -43,19 +56,21 @@ class CarModel(models.Model):
     date = models.DateField(null=True)
     
     def __str__(self):
-        return 'Title: ' + self.title
+        return 'Title: ' + self.carType
 
 # <HINT> Create a plain Python class `CarDealer` to hold dealer data
 
 class CarDealer:
 
-    def __init__(self, address, city, full_name, id, lat, long, short_name, st, zip):
+    def __init__(self, address, city,  id, lat, long, st, zip):
+        
+        #full_name, short_name
         # Dealer address
         self.address = address
         # Dealer city
         self.city = city
         # Dealer Full Name
-        self.full_name = full_name
+        #self.full_name = full_name
         # Dealer id
         self.id = id
         # Location lat
@@ -63,7 +78,7 @@ class CarDealer:
         # Location long
         self.long = long
         # Dealer short name
-        self.short_name = short_name
+        #self.short_name = short_name
         # Dealer state
         self.st = st
         # Dealer zip
@@ -74,21 +89,24 @@ class CarDealer:
 # <HINT> Create a plain Python class `DealerReview` to hold review data
 
 class DealerReview:
-        def __init__(self, dealership, name, purchase, review, purchase_date, car_make, car_model, car_year, sentiment, id):
-
+        def __init__(self, dealership, name, purchase, review):
+        #def __init__(self, dealership, name, purchase, review, purchase_date, car_make, car_model, car_year, sentiment, id):
             self.dealership = dealership
             self.name = name
             self.purchase = purchase
             self.review = review
-            self.purchase_date = purchase_date
-            self.car_make = car_make
-            self.car_model = car_model
-            self.car_year = car_year
-            self.sentiment = sentiment
-            self.id = id
+            #self.purchase_date = purchase_date
+            #self.car_make = car_make
+            #self.car_model = car_model
+            #self.car_year = car_year
+            #self.sentiment = sentiment
+            #self.id = id
         
         def __str__(self):
-            
-            ### Not sure what to return ###
-            return somethingHere
-            #########################################
+                return "Review: " + self.review
+        def to_json(self):
+                return json.dumps(self, default=lambda o: o.__dict__,
+                                  sort__keys=True, indent=4)
+                                
+#class ReviewPost:
+        
