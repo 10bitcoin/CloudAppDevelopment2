@@ -14,6 +14,8 @@
     <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
 </head>
 <body>
+     <div class="rightalign">
+        <div class="dropdown">
     <form action="{% url 'djangoapp:registration' %}" method="post">
         <div class="container"> <!--Style root div with .container class -->
           {% csrf_token %}
@@ -37,5 +39,7 @@
           </div>
         </div>
       </form>
+         </div>
+    </div>
 </body>
 </html>
