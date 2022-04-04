@@ -71,6 +71,8 @@
                     {% endif %}
                     </ul>
                 </div>
+            </nav>
+        </div>
     <!--Add a dealer table here -->
     <h1><center>Our Dealerships</center></h1>
     <table class="table table-bordered" id="dealership_table" data-filter-control="true">
@@ -78,10 +80,12 @@
             <tr>
                 <th data-field="id">ID</th>
 		<th data-field="full_name">Dealer Name</th>
+        <th data-field="short_name">Short Name</th>
 		<th data-field="city">City</th>
 		<th data-field="address">Address</th>
+		<th data-field="st">State</th>
 		<th data-field="zip">Zip</th>
-		<th data-field="state" data-filter-control="select">State</th>
+        <!-- <th data-field="state" data-filter-control="select">State</th> -->
             </tr>
         </thead>
         <tbody>
