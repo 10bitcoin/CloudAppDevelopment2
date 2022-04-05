@@ -75,7 +75,7 @@
         </div>
     <!--Add a dealer table here -->
       <h1><center>Our Dealerships</center></h1>
-    <table class="table table-bordered" id="dealership_table" data-filter-control="true">
+    <table class="table table-bordered" id="table" data-filter-control="true">
         <thead class="thead-light">
             <tr>
                 <th data-field="id">ID</th>
@@ -94,7 +94,7 @@
                         <td>{{dealer.city}}</td>
                         <td>{{dealer.address}}</td>
                         <td>{{dealer.zip}}</td>
-                        <td>{{dealer.st}}</td>
+                        <td>{{dealer.state}}</td>
                 </tr>
             {% endfor %}
         </tbody>
