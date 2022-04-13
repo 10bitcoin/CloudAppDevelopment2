@@ -6,21 +6,18 @@ from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 from ibm_watson import NaturalLanguageUnderstandingV1
 from ibm_watson.natural_language_understanding_v1 import Features,SentimentOptions
 import time
- 
 
-#def analyze_review_sentiments(text):
-#    url = "https://api.eu-gb.natural-language-understanding.watson.cloud.ibm.com/instances/c8b0f019-31d6-41ac-b003-a2a31608839e"
-#    api_key = "X2W_XG21E2BqmQ57cKeaX1rI9N43ZflG2KuaUmPJ_7wq"
-#    authenticator = IAMAuthenticator(api_key)
-#    natural_language_understanding = NaturalLanguageUnderstandingV1(version='2021-08-01',authenticator=authenticator)
-#    natural_language_understanding.set_service_url(url)
-#    response = natural_language_understanding.analyze( text=text+"hello hello hello",features=Features(sentiment=SentimentOptions(targets=[text+"hello hello hello"]))).get_result()
-#    label=json.dumps(response, indent=2)
-#    label = response['sentiment']['document']['label']
-    
-    
-#    return(label)
-
+def analyze_review_sentiments(text):
+    url = "https://api.eu-gb.natural-language-understanding.watson.cloud.ibm.com/instances/c8b0f019-31d6-41ac-b003-a2a31608839e"
+    api_key = "X2W_XG21E2BqmQ57cKeaX1rI9N43ZflG2KuaUmPJ_7wq"
+    authenticator = IAMAuthenticator(api_key)
+    natural_language_understanding = NaturalLanguageUnderstandingV1(version='2021-08-01',authenticator=authenticator)
+    natural_language_understanding.set_service_url(url)
+    response = natural_language_understanding.analyze( text=text+"hello hello hello",features=Features(sentiment=SentimentOptions(targets=[text+"hello hello hello"]))).get_result()
+    label=json.dumps(response, indent=2)
+    label = response['sentiment']['document']['label']
+       
+    return(label)
 
 def get_dealers_from_cf(url, **kwargs):
     results = []
@@ -47,7 +44,6 @@ def get_dealers_from_cf(url, **kwargs):
 
     return results
 
-
 def get_dealer_by_id_from_cf(url, id):
     json_result = get_request(url, id=id)
     
@@ -61,7 +57,6 @@ def get_dealer_by_id_from_cf(url, id):
                                 state=dealer_doc["state"],
                                 st=dealer_doc["st"], zip=dealer_doc["zip"])
     return dealer_obj
-
 
 def get_dealer_reviews_from_cf(url, **kwargs):
     results = []
