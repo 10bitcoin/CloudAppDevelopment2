@@ -57,8 +57,7 @@
                         {% if user.is_authenticated %}
                         <!--    -->
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="{%url djangoapp:add_review %}">Add Review</a>
-                        </li>
+                            <a class="btn btn-link" href="{% url 'djangoapp:add_review' dealer.id%}">Add Review</a>                        </li>
                         <!-- Validate the above snippet-->
 
                         <li class="nav-item">
