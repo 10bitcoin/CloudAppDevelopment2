@@ -49,7 +49,7 @@ class CarModel(models.Model):
         (MINIVAN, 'Minivan'),
     ]
 
-    model = models.ForeignKey(CarMake, on_delete=models.CASCADE)
+    make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     name = models.CharField(null=True, max_length=30, default='name')
     id = models.IntegerField(default=0, primary_key=True)
     type = models.CharField(null=True, max_length=30, choices=Type_Choice, default=SEDAN)
