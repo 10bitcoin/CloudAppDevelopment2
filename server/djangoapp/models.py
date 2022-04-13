@@ -52,11 +52,11 @@ class CarModel(models.Model):
     model = models.ForeignKey(CarMake, on_delete=models.CASCADE)
     title = models.CharField(null=True, max_length=30, default='title')
     id = models.IntegerField(default=0, primary_key=True)
-    carType = models.CharField(null=True, max_length=30, choices=Type_Choice, default=SEDAN)
-    date = models.DateField(null=True)
+    type = models.CharField(null=True, max_length=30, choices=Type_Choice, default=SEDAN)
+    year = models.DateField(null=True)
     
     def __str__(self):
-        return 'Title: ' + self.carType
+        return 'Title: ' + self.type
 
 # <HINT> Create a plain Python class `CarDealer` to hold dealer data
 
