@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Dealership Review</title>
-    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -16,94 +14,83 @@
 </head>
 
     <body>
-        <div class="container">
-            <nav class="navbar navbar-expand-lg navbar-light bg-danger">
-                <a class="navbar-brand text-white" href="#">CAR DEALER</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-        
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto topnav">
-                        <li class="nav-item active">
-                            <a class="nav-link text-white" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Shop Pre-Owned</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Shop New Cars</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="#">Clearence Event</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Resources
-                            </a>
-                            <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item text-white" href="#">Car Random</a>
-                                <a class="dropdown-item text-white" href="#">Car Gallery</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-white" href="#">SomethingHere</a>
-                            </div>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="./about">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="./contact">Contact</a>
-                        </li>
-                        {% if user.is_authenticated %}
-
-                        <li class="nav-item">
-                                <button class="dropbtn">{{user.first_name}}</button>
-                            <a class="nav-link text-white" href="{% url 'djangoapp:logout' %}">Logout</a>
-                        </li>
-                        {% else %}
-
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'djangoapp:registration' %}">Signup</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="{% url 'djangoapp:login' %}">Login</a>
-                        </li>
-                    {% endif %}
-                    </ul>
-                </div>
-            </nav>
+        <!--Add a nav bar here -->
+    <nav class="navbar navbar-light bg-danger">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{% url 'djangoapp:about' %}">Dealership Review</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li>
+                    <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                    <a class="btn btn-link" href="{% url 'djangoapp:logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <li>
+                    <form class="form-inline" action="{% url 'djangoapp:login' %}" method="post">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Username" name="username" >
+                            <input type="password" class="form-control" placeholder="Password" name="psw" >
+                            <button class="btn btn-primary" type="submit">Login</button>
+                            <a class="btn btn-link" href="{% url 'djangoapp:registration' %}">Sign Up</a>
+                        </div>
+                    </form>
+                </li>
+                {% endif %}
+            </ul>
         </div>
+    </nav>
+        
+
     <!--Add a dealer table here -->
-      <h1><center>Our Dealerships</center></h1>
-    <table class="table table-bordered" id="table" data-filter-control="true">
-        <thead class="thead-light">
+    <div class="container-fluid">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-warning" role="alert">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <table class="table table-bordered" id="table"
+        data-filter-control="true">
+        <thead>
             <tr>
                 <th data-field="id">ID</th>
-		<th data-field="full_name">Dealer Name</th>
-		<th data-field="city">City</th>
-		<th data-field="address">Address</th>
-		<th data-field="zip">Zip</th>
-		<th data-field="state" data-filter-control="select">State</th>
+               
+                <th data-field="city">City</th>
+                <th data-field="address">Address</th>
+                <th data-field="zip">Zip</th>
+                <th data-field="state" data-filter-control="select">State</th>
             </tr>
         </thead>
-        <tbody>
+         <tbody>
             {% for dealer in dealership_list %}
                 <tr>
-                        <td>{{dealer.id}}</td>
-			<td><a href="{% url 'djangoapp:dealer_details' dealer.id %}">{{dealer.full_name}}</a></td>
-                        <td>{{dealer.city}}</td>
-                        <td>{{dealer.address}}</td>
-                        <td>{{dealer.zip}}</td>
-                        <td>{{dealer.state}}</td>
+                    
+                    <td><a href="{% url 'djangoapp:dealer_details' dealer.id %}">{{dealer.id}}</a></td>
+			<td>{{dealer.full_name}}</td>
+                    <td>{{dealer.city}}</td>
+                    <td>{{dealer.address}}</td>
+                    <td>{{dealer.zip}}</td>
+                    <td>{{dealer.st}}</td>
                 </tr>
             {% endfor %}
-        </tbody>
+         </tbody>
     </table>
-
-	<script>
+    </div>
+    <footer class="fixed-bottom">
+          <div class="container-fluid">
+            <a href="{% url 'djangoapp:contact' %}">Contact Us</a>
+          </div>
+    </footer>
+</div>
+</body>
+<script>
   $(function() {
     $('#table').bootstrapTable()
   })
 </script>
+</html>
     </body>
 </html>
