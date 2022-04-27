@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404, render, redirect
-from .models import CarModel, CarMake, CarDealer, DealerReview , ReviewPost
+from .models import CarModel, CarMake, CarDealer, DealerReview, ReviewPost
 from .restapis import get_dealers_from_cf, get_dealer_by_id_from_cf, get_dealer_reviews_from_cf, post_request
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
@@ -65,8 +65,8 @@ def registration_request(request):
             user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name,
                                             password=password)
             user.is_superuser = True
-            user.is_staff = True
-            user.save()
+            user.is_staff=True
+            user.save() 
             login(request, user)
             return redirect("djangoapp:index")
         else:
@@ -97,12 +97,12 @@ def get_dealer_details(request, id):
 
 def add_review(request, id):
     context = {}
-    dealer_url = "https://476b451e.eu-gb.apigw.appdomain.cloud/api/dealership"
+    dealer_url = "https://476b451e.eu-gb.apigw.appdomain.cloud/api/dealerships"
     dealer = get_dealer_by_id_from_cf(dealer_url, id=id)
     context["dealer"] = dealer
     if request.method == 'GET':
         # Get cars for the dealer
-        cars = CarModel.objects.filter(id=id)
+        cars = CarModel.objects.all()
         print(cars)
         context["cars"] = cars
         
